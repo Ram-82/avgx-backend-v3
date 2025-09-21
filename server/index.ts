@@ -5,27 +5,33 @@ const app = express();
 
 // Custom CORS middleware for development
 app.use((req, res, next) => {
-  const origin = req.headers.origin;
   const allowedOrigins = [
-    "http://localhost:3000",
-    "http://localhost:5173", 
-    "http://localhost:3001"
-  ];
+    'http://localhost:5173', // Development
+    'http://localhost:5174', // Development
+    'http://localhost:3000', // Alternative dev port
+    process.env.FRONTEND_URL, // Production frontend from env
+    'https://avgx.vercel.app', // Production frontend (update this to your actual domain)
+    'https://avgx-frontend.vercel.app' // Alternative production domain
+  ].filter(Boolean); // Remove undefined values
+  
+  const origin = req.headers.origin;
   
   if (origin && allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Origin', origin);
+  } else if (allowedOrigins.length > 0) {
+    // Fallback to first allowed origin if no match
+    res.header('Access-Control-Allow-Origin', allowedOrigins[0]);
   }
   
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
   
   if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+    res.sendStatus(200);
+  } else {
+    next();
   }
-  
-  next();
 });
 
 app.use(express.json());
