@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-09-21T15:17:59.721Z",
+  "fiat_rates": {
+    "USD": 1,
+    "EUR": 0.85,
+    "CNY": 7.25,
+    "JPY": 110,
+    "GBP": 0.73
+  },
+  "crypto_prices": {
+    "bitcoin": 115591,
+    "ethereum": 4482.99,
+    "binancecoin": 1053.45,
+    "solana": 238.48,
+    "cardano": 0.885938,
+    "ripple": 2.98,
+    "dogecoin": 0.266867,
+    "the-open-network": 3.07,
+    "avalanche-2": 33.07,
+    "polkadot": 4.31
+  },
+  "avgx_value": 228.64336006873634,
+  "wf_value": 0.8279365183692425,
+  "wc_value": 63142.26386159598
+}

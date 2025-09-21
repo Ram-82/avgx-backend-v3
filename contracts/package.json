@@ -1,0 +1,36 @@
+{
+    "name": "avgx-contracts",
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "AVGX protocol smart contracts",
+    "scripts": {
+      "compile": "hardhat compile",
+      "test": "hardhat test",
+      "deploy": "hardhat run scripts/deploy.ts",
+      "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
+      "deploy:amoy": "hardhat run scripts/deploy.ts --network amoy",
+      "verify": "hardhat run scripts/verify.ts",
+      "coverage": "hardhat coverage",
+      "gas-report": "REPORT_GAS=true hardhat test",
+      "clean": "hardhat clean",
+      "typechain": "hardhat typechain",
+      "node": "hardhat node",
+      "console": "hardhat console"
+    },
+    "devDependencies": {
+      "@chainlink/contracts": "^1.4.0",
+      "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+      "@openzeppelin/contracts": "^5.4.0",
+      "@openzeppelin/hardhat-upgrades": "^3.9.1",
+      "@types/chai": "^4.3.15",
+      "@types/mocha": "^10.0.10",
+      "@types/node": "^20.16.11",
+      "dotenv": "^17.2.1",
+      "ethers": "^6.15.0",
+      "hardhat": "^2.26.3",
+      "hardhat-gas-reporter": "^2.3.0",
+      "solidity-coverage": "^0.8.16",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.6.3"
+    }
+}
