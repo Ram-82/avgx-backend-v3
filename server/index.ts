@@ -9,9 +9,9 @@ app.use((req, res, next) => {
     'http://localhost:5173', // Development
     'http://localhost:5174', // Development
     'http://localhost:3000', // Alternative dev port
+    'https:://avgx.world',
     process.env.FRONTEND_URL, // Production frontend from env
-    'https://avgx.vercel.app', // Production frontend (update this to your actual domain)
-    'https://avgx-frontend.vercel.app' // Alternative production domain
+    'https://avgx-frontend-v3.vercel.app'
   ].filter(Boolean); // Remove undefined values
   
   const origin = req.headers.origin;
