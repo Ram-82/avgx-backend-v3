@@ -10,6 +10,27 @@ import { FileManager } from "./utils/file-manager";
 import { insertTransactionSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+   // API to keep the DB active
+  app.get('/', async (req, res) => {
+    try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT NOW()'); // Simple query to check connection
+      client.release(); // Release the client back to the pool
+  
+      res.status(200).json({
+        message: 'Successfully connected to the database and fetched data!',
+        databaseTime: result.rows[0].now,
+      });
+    } catch (err: any) {
+      console.error('Database connection or query error:', err);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to connect to the database.',
+        error: err.message,
+      });
+    }
+  });
+  
   // Core AVGX endpoint - returns current WF, WC, avgx_usd, breakdown
   app.get("/api/avgx", async (req, res) => {
     try {
